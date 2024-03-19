@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ordinary Grumpy Human</title>
+    <title>Template 5 Generator</title>
+    <meta property="og:title" content="Ordinary Grumpy Human" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
+
+      <div class="home-container">
+        <h1 class="home-text">
+          <span>Chat with PDF</span>
+          <br />
+        </h1>
+        <div class="home-container1">
+          <div class="home-container2">
+            <style>
+              body {
+                  font-family: 'Arial', sans-serif;
+                  background-color: #f9f9f9;
+                  margin: 0;
+                  padding: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100vh;
+              }
+              .container {
+                  width: 50%;
+                  background: #fff;
+                  padding: 40px;
+                  border-radius: 8px;
+                  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                  text-align: center;
+                  transition: all 0.3s ease-out;
+              }
+              .hidden {
+                  display: none !important;
+              }
+              .title, .success-title {
+                  color: #333;
+                  margin-bottom: 20px;
+              }
+              .drag-area {
+                  border: 2px dashed #ccc;
+                  border-radius: 8px;
+                  padding: 30px;
+                  margin-bottom: 20px;
+                  position: relative;
+              }
+              .icon {
+                  margin-bottom: 10px;
+              }
+              .drag-text {
+                  color: #aaa;
+                  font-size: 16px;
+                  margin-bottom: 15px;
+              }
+              .file-input {
+                  display: none;
+              }
+              .upload-btn, .process-btn {
+                  background-color: #4CAF50; /* Green */
+                  color: white;
+                  border: none;
+                  padding: 10px 24px;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  font-size: 16px;
+                  margin-top: 20px;
+              }
+              .upload-btn:hover, .process-btn:hover {
+                  background-color: #45a049;
+              }
+              .dropdown {
+                  width: 80%; /* Increased width */
+                  padding: 10px;
+                  margin-bottom: 20px;
+                  font-size: 16px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                  display: block; /* Ensure it takes the full width */
+                  margin-left: auto;
+                  margin-right: auto;
+              }
+              #successScreen {
+                  display: none;
+                  padding: 20px;
+                  text-align: center;
+                  background-color: #e8f4e8;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+              }
+            </style>
+
+            <div id="fileUploadContainer" class="container">
+              <div class="title">Template Generator</div>
+              <div id="drag-area" class="drag-area">
+                <div class="icon">📂</div>
+                <div class="drag-text">
+                  Drag &amp; Drop your files here or click to browse
+                </div>
+                <ul id="fileList"></ul>
+                <!-- File list container -->
+                <input
+                  type="file"
+                  id="fileInput"
+                  class="file-input"
+                  multiple=""
+                />
+              </div>
+              <button class="upload-btn" id="uploadButton">Upload</button>
+              <div id="error" style="color: red;"></div>
+              <!-- Error message container -->
+            </div>
+            <div id="successScreen" class="container"></div>
+
+            <script>
+              localStorage.clear();
+
+              let pineconeNamespace; // Declare a global variable
+
+              document.getElementById('drag-area').addEventListener('click', function() {
+                  document.getElementById('fileInput').click();
+              });
+
+              document.getElementById('fileInput').addEventListener('change', function() {
+                  const fileListElement = document.getElementById('fileList');
+                  fileListElement.innerHTML = ''; // Clear the list
+                  Array.from(this.files).forEach((file) => {
+                      const listItem = document.createElement('li');
+                      listItem.textContent = file.name;
+                      fileListElement.appendChild(listItem);
+                  });
+              });
+
+              document.getElementById('uploadButton').addEventListener('click', async () => {
+                  const fileUploadContainer = document.getElementById('fileUploadContainer');
+                  const errorDiv = document.getElementById('error');
+                  const formData = new FormData();
+
+                  if (fileInput.files.length === 0) {
+                      errorDiv.textContent = 'Please select at least one file.';
+                      return;
+                  }
+
+                  Array.from(fileInput.files).forEach((file) => {
+                      formData.append('files', file);
+                  });
+
+                  pineconeNamespace = new Date().toISOString().replace(/\D/g, '');
+                  localStorage.setItem('pineconeNamespace', pineconeNamespace);
+                  formData.append('pineconeNamespace', pineconeNamespace);
+
+                  try {
+                      const response = await fetch('https://codecloozo-production.up.railway.app/api/v1/vector/upsert/a1e60ea5-29d7-4374-ba87-f29389d62e1d', {
+                          method: 'POST',
+                          body: formData,
+                      });
+
+                      if (!response.ok) {
+                          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                      }
+                      fileUploadContainer.classList.add('hidden'); // Hide the upload container
+                      window.location.href = './chat.html'; // Redirect to chat.html
+
+                     // showSuccessScreen(); // Display the success screen
+                  } catch (error) {
+                      console.error('Upload failed:', error);
+                      errorDiv.textContent = 'Upload failed: ' + error.message;
+                  }
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
