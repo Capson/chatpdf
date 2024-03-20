@@ -7,27 +7,22 @@
     <!-- Add your CSS links here -->
 </head>
 <body>
-
-   <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let pineconeNamespace = localStorage.getItem('pineconeNamespace');
-            // Here you can use pineconeNamespace as needed for your application logic.
-            console.log(pineconeNamespace); // Example use: logging to the console.
-        });
-    </script>
     <!-- Your chatbot element -->
     <flowise-fullchatbot></flowise-fullchatbot>
     <script type="module">
-        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        // Since you're using modules, localStorage is available directly
+        let pineconeNamespace = localStorage.getItem('pineconeNamespace');
+        console.log(pineconeNamespace); // Ensure it's retrieved correctly
+        
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
         Chatbot.initFull({
             chatflowid: "a1e60ea5-29d7-4374-ba87-f29389d62e1d",
             apiHost: "https://codecloozo-production.up.railway.app",
-           chatflowConfig: {
-            pineconeNamespace:"monjira"
-        },
+            chatflowConfig: {
+                pineconeNamespace: pineconeNamespace
+            },
         });
     </script>
-
     <!-- Add any other scripts or content here -->
 </body>
 </html>
